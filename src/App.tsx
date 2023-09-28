@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import CandidateInfo from './component/CandidateInfo';
 import CriteriaDropdown from './component/CriteriaDropdown';
 import SideNavbar from './component/SideNavbar'
 import { candidates } from './mockdata';
+import SearchBar from './component/SearchBar';
 
 function App() {
+  const [candidatesInfoState, setCandidatesInfoState] = useState(candidates);
+
   return (
     <main className="w-screen h-[100dvh] bg-[#F9FAFF] flex leading-normal overflow-hidden">
       <SideNavbar />
@@ -12,22 +16,10 @@ function App() {
               <h2 className="text-xl text-[#1D4ED8] font-semibold">London Internship Program</h2>
               <h6 className="text-xs text-[#c48a8a] font-light mt-2">London</h6>
 
-              <div className="relative w-full mt-8 mb-6">
-                  <input 
-                      type="text" 
-                      placeholder="Serach by name, edu, exp or #tag"
-                      className="h-12 w-full px-9 bg-white border border-[#F3F3F3] rounded-[8px] 
-                      text-sm text-[#9AA6AC] focus:border-[#B1CDFD] focus:outline-none"
-                  />
-                  <img 
-                      src="/search-magnifying-glass.svg" 
-                      className="absolute top-1/2 -translate-y-1/2 left-3" 
-                  /> 
-                  <img 
-                      src="/circle-warning.svg" 
-                      className="absolute top-1/2 -translate-y-1/2 right-3" 
-                  />
-              </div>
+              <SearchBar 
+                  candidatesInfo={candidates}
+                  setCandidatesInfoState={setCandidatesInfoState}
+              />
 
               <div className="w-full bg-white rounded-[8px] text-sm text-[#0B0B0B] overflow-hidden">
                   <div className="w-full px-4 py-[18px] border-b border-[] flex items-center justify-between">
@@ -106,7 +98,7 @@ function App() {
                         </div>
                     </div>
                 </div>
-                {candidates.map((candidate, index) => (
+                {candidatesInfoState.map((candidate, index) => (
                     <CandidateInfo 
                         key={index} 
                         {...candidate} 
