@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { Candidate } from "../mockdata";
 
 interface CandidateInfoProps extends Candidate {
+    selected: boolean;
     extraInfo?: boolean;
 }
 const CandidateInfo = ({
@@ -9,13 +11,21 @@ const CandidateInfo = ({
     education, 
     country, 
     tags, 
-    extraInfo
+    selected,
+    extraInfo,
 }: CandidateInfoProps) => {
+    const [candidateSelected, setCandidateSelected] = useState(selected);
+    useEffect(() => setCandidateSelected(selected), [selected])
+
     return (  
-        <div className="w-full flex items-start justify-between py-4 border-t border-[#F2F2F2]">
+        <div 
+            onClick={() => setCandidateSelected(prev => !prev)}
+            className="w-full flex items-start justify-between py-4 border-b border-[#F2F2F2]"
+        >
             <div className="flex items-center gap-6">
                 <input 
                     type="checkbox" 
+                    checked={candidateSelected}
                     className="h-4 w-4 accent-[#1D4ED8]" 
                 />
                 <div className="py-[13px] px-[14px] rounded-full bg-[#EDF4FF] text-[#D0E1FF] text-xl font-semibold">
