@@ -4,28 +4,33 @@ const CriteriaDropdown = () => {
     const [dropdownValue, setDropdownValue] = useState("Opportunity Browsing");
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const dropdownButtonRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClickOutsideQuestionBox = (event: MouseEvent) => {
-            if (showDropdown && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            if (
+                showDropdown && dropdownRef.current && dropdownButtonRef.current &&
+                (!dropdownRef.current.contains(event.target as Node) &&
+                !dropdownButtonRef.current.contains(event.target as Node))
+            ) {
                 setShowDropdown(false);
             }
         };
     
-        document.addEventListener("mousedown", handleClickOutsideQuestionBox);
+        document.addEventListener("click", handleClickOutsideQuestionBox);
     
         return () => {
-            document.removeEventListener("mousedown", handleClickOutsideQuestionBox);
+            document.removeEventListener("click", handleClickOutsideQuestionBox);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [showDropdown]);
 
     return (  
         <div className="relative">
             <div 
                 onClick={() => setShowDropdown(prev => !prev)}
-                className="h-full w-[320px] px-4 rounded-t-[16px] bg-white flex items-center 
-                justify-between shadow-[0px_4px_25px_0px_rgba(29,78,216,0.05)] cursor-pointer"
+                ref={dropdownButtonRef}
+                className={`h-full w-[320px] px-4 ${showDropdown ? "rounded-t-[16px]" : "rounded-[16px]"} bg-white flex items-center 
+                justify-between shadow-[0px_4px_25px_0px_rgba(29,78,216,0.05)] cursor-pointer`}
             >
                 <h3 className="font-medium text-[#1D4ED8]">{dropdownValue}</h3>
                 <img 
