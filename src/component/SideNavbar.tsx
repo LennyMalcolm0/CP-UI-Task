@@ -1,7 +1,7 @@
 const SideNavbar = () => {
     return (  
         <nav className="h-full w-fit py-6 px-3 bg-white flex flex-col gap-[80px] justify-between 
-            nav-scroll-bar overflow-auto shadow-[0px_4px_23px_0px_rgba(0,0,0,0.05)]"
+            custom-scroll-bar overflow-auto shadow-[0px_4px_23px_0px_rgba(0,0,0,0.05)]"
         >
             <div>
                 <div className="h-12 w-12 mb-8">

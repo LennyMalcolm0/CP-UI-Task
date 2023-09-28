@@ -15,16 +15,16 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.nav-scroll-bar::-webkit-scrollbar {
+.custom-scroll-bar::-webkit-scrollbar {
   height: 6px;
   width: 6px;
 }
 
-.nav-scroll-bar::-webkit-scrollbar-thumb {
+.custom-scroll-bar::-webkit-scrollbar-thumb {
   background: #B1CDFD;
   border-radius: 25px;
 }
 
-.nav-scroll-bar::-webkit-scrollbar-track {
+.custom-scroll-bar::-webkit-scrollbar-track {
   border-radius: 25px;
 }
